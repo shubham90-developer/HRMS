@@ -15,11 +15,15 @@ if (!process.env.JWT_SECRET) {
 
 const app = express();
 
-// Security headers. CSP is relaxed outside production so Swagger UI can load.
+// Swagger runs in development, or in production when ENABLE_SWAGGER=true
+const swaggerEnabled =
+  process.env.NODE_ENV !== "production" ||
+  process.env.ENABLE_SWAGGER === "true";
+
+// Security headers. CSP is relaxed when Swagger is enabled so Swagger UI can load.
 app.use(
   helmet({
-    contentSecurityPolicy:
-      process.env.NODE_ENV === "production" ? undefined : false,
+    contentSecurityPolicy: swaggerEnabled ? false : undefined,
   }),
 );
 
@@ -35,13 +39,15 @@ DBConnection();
 
 seedAdmin();
 
-// Swagger (dev only)
-if (process.env.NODE_ENV !== "production") {
+if (swaggerEnabled) {
   setupSwagger(app);
 }
 
-app.use("/v1/api/", router);
+// Health check
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "HRMS API is running" });
 });
+
+app.use("/v1/api/", router);
+
 export default app;
