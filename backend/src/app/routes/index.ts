@@ -8,6 +8,11 @@ import { holidayRouter } from "../modules/holidays/holiday.routes";
 import { recruitmentRouter } from "../modules/recruitment/recruitment.routes";
 import { advertisementRouter } from "../modules/advertisement/advertisement.routes";
 import { employeeDocumentRouter } from "../modules/employeeDocument/employeeDocument.routes";
+import { statutoryRouter } from "../modules/statutory/statutory.routes";
+import { securityMasterRouter } from "../modules/securityMaster/securityMaster.routes";
+import { discussionRouter } from "../modules/discussion/discussion.routes";
+import { alertsRouter } from "../modules/alerts/alerts.routes";
+import { trainingRouter } from "../modules/training/training.routes";
 const router = Router();
 
 const moduleRoutes = [
@@ -46,6 +51,26 @@ const moduleRoutes = [
   {
     path: "/employee-documents",
     route: employeeDocumentRouter,
+  },
+  {
+    path: "/statutory",
+    route: statutoryRouter,
+  },
+  {
+    path: "/security-master",
+    route: securityMasterRouter,
+  },
+  {
+    path: "/discussion",
+    route: discussionRouter,
+  },
+  {
+    path: "/alerts",
+    route: alertsRouter,
+  },
+  {
+    path: "/training",
+    route: trainingRouter,
   },
 ];
 

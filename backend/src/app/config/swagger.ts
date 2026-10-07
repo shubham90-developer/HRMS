@@ -15,7 +15,7 @@ const options: swaggerJSDoc.Options = {
       description:
         "REST API documentation for the HRMS (Human Resource Management System) App.",
       contact: {
-        name: "Muskan Mujavar",
+        name: "shubham yadav",
         email: "atisnodejsdeveloper@example.com",
       },
       license: {
